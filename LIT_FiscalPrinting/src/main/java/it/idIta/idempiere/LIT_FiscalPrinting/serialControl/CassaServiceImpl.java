@@ -58,7 +58,7 @@ public class CassaServiceImpl {
         while (ports.hasMoreElements()) {
             CommPortIdentifier portId = (CommPortIdentifier) ports.nextElement();
             System.out.println("PORT::: "+portId.toString());
-            if (portId.getPortType() == CommPortIdentifier.PORT_SERIAL && portId.getName().contains("/dev/pts")) {
+            if (portId.getPortType() == CommPortIdentifier.PORT_SERIAL && portId.getName().contains("/dev/ttyUSB")) {
                 try {
                     listaPorte.add(portId.getName());
                     sp = (SerialPort) portId.open("Demo application", 10000);
