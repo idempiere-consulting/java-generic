@@ -1,0 +1,13 @@
+package it.idIta.idempiere.LIT_FiscalPrinting;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class LitFiscalPrintingApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
