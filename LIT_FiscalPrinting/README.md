@@ -8,7 +8,7 @@ For further reference, please consider the following sections:
 * [jssc_Example](https://github.com/java-native/jssc/wiki/examples)
 
 ### Guides
-IMPORTANTE: libreria nativa libjssc.so DEVE ESSERE  copiata all'interno della cartella '/lib' di java della macchina; es: 
+IMPORTANTE: libreria nativa ***libjssc.so*** DEVE ESSERE  copiata all'interno della cartella '/lib' di java della macchina; es: /opt/java/jdk-11.0.1/lib
 
 Passi per utilizzo di questo server per collegamento seriale:
 
@@ -33,7 +33,4 @@ Passi per utilizzo di questo server per collegamento seriale:
    ```
 
 5. (vecchia gestione, cancellare il LOCK_FILE con "sudo rm -f /var/lock/LCK..ttyS10")
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
 
