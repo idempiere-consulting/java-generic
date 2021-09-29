@@ -98,8 +98,20 @@ public class CassaServiceImpl {
     }
 
     public void sendProdotti(List<Prodotto> listaProdotti) {
+    	Integer n_reparto = 1;
         for (Prodotto p : listaProdotti){
-            sendProdotto(p.getNome(), Float.valueOf(p.getPrezzo()), 1, Integer.valueOf(p.getQta()));
+        	if(p.getIdCatMerc().equalsIgnoreCase("Ristorante")) {
+        		n_reparto = 1;
+        	}else if(p.getIdCatMerc().equalsIgnoreCase("Bottega")) {
+        		if(p.getIdIva().startsWith("22"))
+        			n_reparto = 2;
+        		else if(p.getIdIva().startsWith("4"))
+        			n_reparto = 3;
+        		else if(p.getIdIva().startsWith("10"))
+        			n_reparto = 4;
+        	}
+        	
+            sendProdotto(p.getNome(), Float.valueOf(p.getPrezzo()), n_reparto, Integer.valueOf(p.getQta()));
         }
     }
 
