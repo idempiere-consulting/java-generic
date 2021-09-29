@@ -49,10 +49,13 @@ public class CassaServiceImpl {
     public void scanPort() {
     	listaPorte = new ArrayList<String>();
     	for(String port : SerialPortList.getPortNames()) {
-    		System.out.println("PORT::: "+port);
+    		Logger.getLogger(CassaServiceImpl.class.getName()).log(Level.INFO, "PORT::: "+port, "PORT::: "+port);
+    		//System.out.println("PORT::: "+port);
     		if(port!=null && port.contains("/dev/ttyUSB")) {
                     listaPorte.add(port);
                     sp = new SerialPort(port);
+                    Logger.getLogger(CassaServiceImpl.class.getName()).log(Level.INFO, "CONFIG_PORT::: "+port, "CONFIG_PORT::: "+port);
+                    //System.out.println("CONFIG_PORT::: "+port);
                     configPort();
                     break;
     		}

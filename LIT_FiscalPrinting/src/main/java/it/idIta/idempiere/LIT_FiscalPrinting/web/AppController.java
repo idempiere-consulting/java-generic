@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -29,6 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import it.idIta.idempiere.LIT_FiscalPrinting.model.User;
+import it.idIta.idempiere.LIT_FiscalPrinting.serialControl.CassaServiceImpl;
 import it.idIta.idempiere.LIT_FiscalPrinting.serialControl.Product_SerialControl;
 
 @RestController
@@ -113,7 +116,8 @@ public class AppController {
 	public String testScript(HttpServletRequest req, @RequestBody String json) {
 		try {
 			json = URLDecoder.decode(json, "utf-8");
-			System.out.println("Arrivo:::: "+json);
+			//System.out.println("Arrivo:::: "+json);
+			Logger.getLogger(AppController.class.getName()).log(Level.INFO, "Json_scontrino: "+json, "");
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
