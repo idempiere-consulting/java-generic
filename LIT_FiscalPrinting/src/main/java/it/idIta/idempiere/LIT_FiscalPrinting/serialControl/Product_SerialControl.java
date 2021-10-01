@@ -18,9 +18,10 @@ public class Product_SerialControl {
 		
 	}
 	
-	public void cmdProduct(String json) {
+	public boolean cmdProduct(String json) {
 		ObjectMapper mapper = new ObjectMapper();
         List<Prodotto> prodotti = new ArrayList<Prodotto>();
+        boolean result_send = false;
         try {
             prodotti = mapper.readValue(json, new TypeReference<List<Prodotto>>() {});
             
@@ -34,15 +35,19 @@ public class Product_SerialControl {
             cassaService.scanPort();
             //cassaService.configPort();
         }
-        cassaService.sendProdotti(prodotti);
-        cassaService.sendSubtotale();
-        if(cassaService.getPort()!=null)
+        result_send = cassaService.sendProdotti(prodotti);
+        if(result_send)
+        	result_send = cassaService.sendSubtotale();
+        if(cassaService.getPort()!=null) {
 			try {
 				cassaService.getPort().closePort();
 			} catch (SerialPortException e) {
+				result_send = false;
 				Logger.getLogger(Product_SerialControl.class.getName()).log(Level.SEVERE, null, e);
 			}
+        }
         
+        return result_send;
 	}
 
 }

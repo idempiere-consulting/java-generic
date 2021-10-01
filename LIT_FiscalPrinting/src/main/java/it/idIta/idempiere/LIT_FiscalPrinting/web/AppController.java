@@ -123,10 +123,12 @@ public class AppController {
 			e.printStackTrace();
 		}
 		Product_SerialControl prdSerialControl = new Product_SerialControl();
-		prdSerialControl.cmdProduct(json);
-		
+		if(prdSerialControl.cmdProduct(json))
+			return "{\"success\":1}";
+		else
+			return "{\"success\":0}";
 		//return json;
-		return "{\"success\":1}";
+		
 	}
 
 }

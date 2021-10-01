@@ -78,30 +78,34 @@ public class CassaServiceImpl {
     	}
     }
     
-    public void sendCommand(String command) {
+    public boolean sendCommand(String command) {
+    	boolean send = false;
         if (sp != null) {
             try {
-            	sp.writeBytes((command + "\r\n").getBytes(Charset.forName("UTF-8")));
+            	send = sp.writeBytes((command + "\r\n").getBytes(Charset.forName("UTF-8")));
             } 
             catch (SerialPortException e) {
             	Logger.getLogger(CassaServiceImpl.class.getName()).log(Level.SEVERE, null, e);
+            	send = false;
 			}
         }
+        return send;
     }
 
-    public void sendSubtotale() {
-        sendCommand("=");
+    public boolean sendSubtotale() {
+        return sendCommand("=");
     }
 
-    public void sendProdotto(String descrizione, Float prezzo, Integer reparto, Integer qta) {
+    public boolean sendProdotto(String descrizione, Float prezzo, Integer reparto, Integer qta) {
         prezzo = prezzo*100;
         Integer tmpPrezzo=Math.round(prezzo);
         String comando = "\"" + descrizione + "\"" + qta+"*"+tmpPrezzo + "H" + reparto + "R";
-        sendCommand(comando);
+        return sendCommand(comando);
     }
 
-    public void sendProdotti(List<Prodotto> listaProdotti) {
+    public boolean sendProdotti(List<Prodotto> listaProdotti) {
     	Integer n_reparto = 1;
+    	boolean sendBySerial = true;
         for (Prodotto p : listaProdotti){
         	if(p.getIdCatMerc().equalsIgnoreCase("Ristorante")) {
         		n_reparto = 1;
@@ -114,8 +118,13 @@ public class CassaServiceImpl {
         			n_reparto = 4;
         	}
         	
-            sendProdotto(p.getNome(), Float.valueOf(p.getPrezzo()), n_reparto, Integer.valueOf(p.getQta()));
+            if(!sendProdotto(p.getNome(), Float.valueOf(p.getPrezzo()), n_reparto, Integer.valueOf(p.getQta()))) {
+            	sendBySerial = false;
+            	break;
+            }
         }
+        
+        return sendBySerial;
     }
 
     
