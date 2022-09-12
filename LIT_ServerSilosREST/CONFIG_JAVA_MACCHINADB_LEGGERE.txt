@@ -3,4 +3,4 @@
 2) Estrarre la cartella sotto  --> C:\Program Files\Microsoft SQL Server\  (sqljdbc_11.2\.... nome della cartella)
 
 3) In base all'architettura di Windows, copiare (ad esempio) il file C:\Program Files\Microsoft SQL Server\sqljdbc_11.2\ita\auth\x86\mssql-jdbc_auth-11.2.0.x86.dll e 
-   metterlo nella cartella di JAVA/bin che è attiva sulla macchina windows (ad esempio)  C:\Program Files\Microsoft\jdk-11.0.12.7-hotspot\bin
+   metterlo nelle cartelle di JAVA/bin e JAVA/lib che è attiva sulla macchina windows (ad esempio)  C:\Program Files\Microsoft\jdk-11.0.12.7-hotspot\bin ---- C:\Program Files\Microsoft\jdk-11.0.12.7-hotspot\lib
